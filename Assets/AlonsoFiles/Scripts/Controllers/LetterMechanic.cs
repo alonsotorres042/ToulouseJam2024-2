@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 public class LetterMechanic : MonoBehaviour
 {
     [SerializeField] TMP_InputField playerInput;
@@ -13,6 +14,7 @@ public class LetterMechanic : MonoBehaviour
     [SerializeField] string[] contentOptions;
 
     Letter targetLetter = new Letter();
+    Tween myTween;
 
     void Start()
     {
@@ -32,12 +34,15 @@ public class LetterMechanic : MonoBehaviour
                 playerInput.text = "";
                 RandomizeTargetContent();
                 targetText.text = targetLetter.letterContent;
-                depresometer.value -= correctAnswerDiscount;
+
+                myTween.Kill();
+                myTween = DOTween.To(() => depresometer.value, x => depresometer.value = x, depresometer.value - correctAnswerDiscount, 1).SetEase(Ease.Linear);
                 Debug.Log("Success");
             }
             else
             {
-                depresometer.value += currentError;
+                myTween.Kill();
+                myTween = DOTween.To(() => depresometer.value, x => depresometer.value = x, depresometer.value + currentError, 1).SetEase(Ease.Linear);
                 Debug.Log("Wrong answer, check for mistakes");
             }
         }

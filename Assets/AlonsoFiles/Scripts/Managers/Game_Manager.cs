@@ -1,21 +1,20 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Game_Manager : MonoBehaviour
 {
-    [SerializeField] float levelLastingTime;
-    [SerializeField] TMPro.TextMeshProUGUI timer;
+    [SerializeField] float limitTime = 480f; // Tiempo total a alcanzar (en segundos)
+    [SerializeField] float timeToReachLimit = 120f; // Tiempo en el que se alcanzará el límite
+    [SerializeField] TextMeshProUGUI timer; // Referencia al componente TextMeshProUGUI
 
     IEnumerator MyTimerRef;
 
-    // Start is called before the first frame update
     void Start()
     {
-        MyTimerRef = MyTimer(levelLastingTime);
+        MyTimerRef = MyTimer(limitTime, timeToReachLimit);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -24,22 +23,25 @@ public class Game_Manager : MonoBehaviour
             StartCoroutine(MyTimerRef);
         }
     }
-    public IEnumerator MyTimer(float limitTime)
-    {
-        float time = 0;
-        while (time < limitTime)
-        {
-            time += Time.deltaTime;
 
-            int minutes = Mathf.FloorToInt(time / 60);
-            int seconds = Mathf.FloorToInt(time % 60);
+    public IEnumerator MyTimer(float limitTime, float timeToReachLimit)
+    {
+        float currentValue = 780;
+        float incrementPerSecond = limitTime / timeToReachLimit; // Incremento por segundo
+
+        while (currentValue < limitTime)
+        {
+            currentValue += incrementPerSecond * Time.deltaTime;
+            currentValue = Mathf.Min(currentValue, limitTime);
+
+            int minutes = Mathf.FloorToInt(currentValue / 60);
+            int seconds = Mathf.FloorToInt(currentValue % 60);
 
             timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
             yield return null;
         }
 
-        Debug.Log("FinishedTime");
-        StopCoroutine(MyTimerRef);
+        Debug.Log("Timer reached the limit!");
     }
 }
