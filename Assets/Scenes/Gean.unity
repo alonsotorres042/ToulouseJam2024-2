@@ -427,17 +427,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852aafa10b35186439804aa7c7347e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _TransformCanvas: {fileID: 0}
   _PosObjetivos:
   - {fileID: 1122538101}
   - {fileID: 1034739288}
   - {fileID: 732766146}
   - {fileID: 634374787}
   - {fileID: 658081352}
-  _NumPosObjetivos: 0
   SuavidadDeMov: 0.5
   SuavidadDeScala: 0.5
-  Inicio: 0
 --- !u!114 &477553340
 MonoBehaviour:
   m_ObjectHideFlags: 0
