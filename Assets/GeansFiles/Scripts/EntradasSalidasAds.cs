@@ -39,7 +39,9 @@ public class EntradasSalidasAds : MonoBehaviour
     public void AparecerPopapAD() 
     {
         _NumPosObjetivos ++; //En que punto se encuentra en el primero segundo... etc 0=1 1=2 se va sumando para ir al siguiente punto
-        if (_NumPosObjetivos < _PosObjetivos.Count) // verifica que el numero no salga del array
+        
+        
+        if (_NumPosObjetivos < _PosObjetivos.Count && _PosObjetivos[_NumPosObjetivos]) // verifica que el numero no salga del array
         {
             this._TransformCanvas.DOScale(Vector3.one, SuavidadDeScala); // escala a su tamaño verdadero
             this._TransformCanvas.DOMove(_PosObjetivos[_NumPosObjetivos].position, SuavidadDeMov).OnComplete(VerificarSiHayMasPuntos); //mueve al punto mencionado
