@@ -21,6 +21,7 @@ public class CambioDePantallas : MonoBehaviour
 
     public void PasaraDia()
     {
+        _PantallaMenu.SetActive(false);
         VentanaDeTransicion.DOKill();
         if (day < Dias.Count)
         {
