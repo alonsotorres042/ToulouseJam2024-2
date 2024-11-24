@@ -26,10 +26,14 @@ public class LetterMechanic : MonoBehaviour
     public Text CartasFaltantes;
     public int CantCartasMaximas;
     int _CantCartas;
-
+    
+    AudioSource _audioSource;
+    public List<AudioClip> _audioClipList;
+    int NumeroAudio;
 
     void Start()
     {
+        _audioSource=GetComponent<AudioSource>();
         _errors.text = "ERRORES:\n";
         RandomizeTargetContent();
         targetText.text = targetLetter.letterContent;
@@ -72,6 +76,8 @@ public class LetterMechanic : MonoBehaviour
             }
             else
             {
+                NumeroAudio = Random.Range(0, _audioClipList.Count - 1);
+                _audioSource.PlayOneShot(_audioClipList[NumeroAudio]);
                 ShowErrors();
                 myTween.Kill();
                 myTween = DOTween.To(() => depresometer.value, x => depresometer.value = x, depresometer.value + currentError, 1).SetEase(Ease.Linear);
