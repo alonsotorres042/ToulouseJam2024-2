@@ -13,6 +13,10 @@ public class LetterMechanic : MonoBehaviour
     [SerializeField] float correctAnswerDiscount;
     [SerializeField] string[] contentOptions;
 
+
+    //SHOW ERRORS TEXT
+    [SerializeField] TextMeshProUGUI _errors;
+
     Letter targetLetter = new Letter();
     Tween myTween;
 
@@ -20,6 +24,7 @@ public class LetterMechanic : MonoBehaviour
 
     void Start()
     {
+        _errors.text = "ERRORES:\n";
         RandomizeTargetContent();
         targetText.text = targetLetter.letterContent;
     }
@@ -48,6 +53,7 @@ public class LetterMechanic : MonoBehaviour
             }
             else
             {
+                ShowErrors();
                 myTween.Kill();
                 myTween = DOTween.To(() => depresometer.value, x => depresometer.value = x, depresometer.value + currentError, 1).SetEase(Ease.Linear);
                 Debug.Log("Wrong answer, check for mistakes");
@@ -75,6 +81,7 @@ public class LetterMechanic : MonoBehaviour
         }
         else
         {
+         
             Debug.Log("Fail");
         }
     }
@@ -93,6 +100,7 @@ public class LetterMechanic : MonoBehaviour
                     {
                         errorPercent++;
                         Debug.Log(currentInput[i]);
+                       
                     }
                 }
                 catch
@@ -112,6 +120,7 @@ public class LetterMechanic : MonoBehaviour
                     {
                         errorPercent++;
                         Debug.Log(currentInput[i]);
+                       
                     }
                 }
                 catch
@@ -131,5 +140,27 @@ public class LetterMechanic : MonoBehaviour
             return input.Substring(0, maxLength); // Toma solo los primeros maxLength caracteres
         }
         return input;
+    }
+
+    void ShowErrors()
+    {
+        string currentInput = playerInput.text;
+        _errors.text = "ERRORES:\n";
+            for (int i = 0; i < targetLetter.letterContent.Length; i++)
+            {
+            if( i >= currentInput.Length - 1)
+            {
+                _errors.text += $"  => {targetLetter.letterContent[i]}\n";
+                continue;
+            }
+
+             if (currentInput[i] != targetLetter.letterContent[i])
+            {
+                _errors.text += $"{currentInput[i]} => {targetLetter.letterContent[i]}\n";
+                }
+
+
+            }
+        
     }
 }
