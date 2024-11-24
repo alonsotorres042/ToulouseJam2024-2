@@ -16,6 +16,8 @@ public class LetterMechanic : MonoBehaviour
     Letter targetLetter = new Letter();
     Tween myTween;
 
+    public CambioDePantallas ManagerScreens;
+
     void Start()
     {
         RandomizeTargetContent();
@@ -26,7 +28,7 @@ public class LetterMechanic : MonoBehaviour
     {
         playerInput.interactable = (playerInput.text == targetLetter.letterContent) ? false : true;
 
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             float currentError = EvaluateErrorPercentage();
             if (currentError == 0)
@@ -38,6 +40,11 @@ public class LetterMechanic : MonoBehaviour
                 myTween.Kill();
                 myTween = DOTween.To(() => depresometer.value, x => depresometer.value = x, depresometer.value - correctAnswerDiscount, 1).SetEase(Ease.Linear);
                 Debug.Log("Success");
+                if (Game_Manager.EnHorarioDeSalida)
+                {
+                    ManagerScreens.LlamarAtransicion();
+                    Game_Manager.EnHorarioDeSalida = false;
+                }
             }
             else
             {
@@ -95,7 +102,7 @@ public class LetterMechanic : MonoBehaviour
             }
             errorPercent = (errorPercent / targetLetter.letterContent.Length) * 100;
         }
-        else if(targetLetter.letterContent.Length <= currentInput.Length)
+        else if (targetLetter.letterContent.Length <= currentInput.Length)
         {
             for (int i = 0; i < currentInput.Length; i++)
             {
@@ -114,6 +121,15 @@ public class LetterMechanic : MonoBehaviour
             }
             errorPercent = (errorPercent / currentInput.Length) * 100;
         }
+        playerInput.text = LimitStringLength(playerInput.text, targetLetter.letterContent.Length);
         return errorPercent;
+    }
+    public string LimitStringLength(string input, int maxLength)
+    {
+        if (input.Length > maxLength)
+        {
+            return input.Substring(0, maxLength); // Toma solo los primeros maxLength caracteres
+        }
+        return input;
     }
 }

@@ -9,7 +9,7 @@ public class AparecerPopUp : MonoBehaviour
     float timepo;
     public void DefinirContador()
     {
-        SegundosEnVolverAparecer=Random.Range(2, 12);
+        SegundosEnVolverAparecer=Random.Range(2, 15);
         timepo = SegundosEnVolverAparecer;
     }
     private void FixedUpdate()

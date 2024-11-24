@@ -764,7 +764,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "TargeText\u200B"
+  m_text: "T\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1230,6 +1230,7 @@ MonoBehaviour:
     tengamos que usar se\xF1as para entender lo que el otro est\xE1 diciendo."
   - "El trabajo en equipo es fundamental para nuestro \xE9xito... aunque a veces
     nos tengamos que trabajar en equipo para encontrar el \xFAltimo donut de la oficina."
+  ManagerScreens: {fileID: 0}
 --- !u!1 &9140677443795116248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,8 +1267,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.7, y: 0.6}
-  m_SizeDelta: {x: 181.9, y: 208.6}
+  m_AnchoredPosition: {x: -1.7, y: 0.6}
+  m_SizeDelta: {x: 182.63, y: 208.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2306924907731132547
 CanvasRenderer:
@@ -1393,7 +1394,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: TargeText
+  m_Text: T
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0

@@ -4,6 +4,7 @@ using TMPro;
 
 public class Game_Manager : MonoBehaviour
 {
+    public static bool EnHorarioDeSalida = false;
     [SerializeField] float limitTime = 480f; // Tiempo total a alcanzar (en segundos)
     [SerializeField] float timeToReachLimit = 120f; // Tiempo en el que se alcanzará el límite
     [SerializeField] TextMeshProUGUI timer; // Referencia al componente TextMeshProUGUI
@@ -13,6 +14,8 @@ public class Game_Manager : MonoBehaviour
     void Start()
     {
         MyTimerRef = MyTimer(limitTime, timeToReachLimit);
+        StopCoroutine(MyTimerRef);
+        StartCoroutine(MyTimerRef);
     }
 
     void Update()
@@ -41,7 +44,7 @@ public class Game_Manager : MonoBehaviour
 
             yield return null;
         }
-
+        EnHorarioDeSalida = true;
         Debug.Log("Timer reached the limit!");
     }
 }
