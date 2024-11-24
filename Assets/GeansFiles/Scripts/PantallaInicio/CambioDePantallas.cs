@@ -19,6 +19,15 @@ public class CambioDePantallas : MonoBehaviour
     public List<Text> _TitulosDias;
     int day=0;
 
+    [Header("Sonido")]
+    AudioSource _Parlante;
+    public AudioClip _CambioDeDia;
+    public AudioClip _EmpiezaElDia;
+    private void Start()
+    {
+        _Parlante = GetComponent<AudioSource>();
+    }
+
     public void PasaraDia()
     {
         _PantallaMenu.SetActive(false);
@@ -43,6 +52,7 @@ public class CambioDePantallas : MonoBehaviour
         VentanaDeTransicion.DOColor(new Color(VentanaDeTransicion.color.r, VentanaDeTransicion.color.g, VentanaDeTransicion.color.b, 1), DuracionTransicion).OnComplete(MantenerScreen);
         void MantenerScreen()
         {
+            _Parlante.PlayOneShot(_CambioDeDia);
             StartCoroutine(TituloDelDia());
         }
     }
@@ -53,6 +63,7 @@ public class CambioDePantallas : MonoBehaviour
         _TitulosDias[day-1].DOColor(new Color(_TitulosDias[day].color.r, _TitulosDias[day].color.g, _TitulosDias[day].color.b, 0), DuracionTransicion);
         void DesactivarPantalla()
         {
+            _Parlante.PlayOneShot(_EmpiezaElDia);
             _TitulosDias[day-1].gameObject.SetActive(false);
             VentanaDeTransicion.gameObject.SetActive(false);
         }

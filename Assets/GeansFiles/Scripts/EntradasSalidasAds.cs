@@ -21,10 +21,15 @@ public class EntradasSalidasAds : MonoBehaviour
 
     bool Inicio=false;
 
-  
+    [Header("Sonidos")]
+    AudioSource Parlante;
+    public AudioClip _SonidoAbrePopUp;
+    public AudioClip _SonidoClickPopUp;
+
 
     private void Start()
     {
+        Parlante= this.gameObject.transform.parent.gameObject.GetComponent<AudioSource>();
         _TransformCanvas = GetComponent<RectTransform>();
         RegresarloAsuEstadoInicial();
         if (!Inicio)
@@ -60,6 +65,7 @@ public class EntradasSalidasAds : MonoBehaviour
         //PRIMARIO
         if (_NumPosObjetivos < _PosObjetivos.Count && _PosObjetivos[_NumPosObjetivos] && PrimarioOSecundario == 0) // verifica que el numero no salga del array
         {
+            Parlante.PlayOneShot(_SonidoAbrePopUp);
             this._TransformCanvas.DOScale(Vector3.one, SuavidadDeScala); // escala a su tamaño verdadero
             this._TransformCanvas.DOMove(_PosObjetivos[_NumPosObjetivos].position, SuavidadDeMov).OnComplete(VerificarSiHayMasPuntos); //mueve al punto mencionado
         }
@@ -67,6 +73,7 @@ public class EntradasSalidasAds : MonoBehaviour
         //SECUNDARIO
         else if (_NumPosObjetivos < _SecundariosPosiciones.Count && _SecundariosPosiciones[_NumPosObjetivos] && PrimarioOSecundario == 1) // verifica que el numero no salga del array
         {
+            Parlante.PlayOneShot(_SonidoAbrePopUp);
             this._TransformCanvas.DOScale(Vector3.one, SuavidadDeScala); // escala a su tamaño verdadero
             this._TransformCanvas.DOMove(_SecundariosPosiciones[_NumPosObjetivos].position, SuavidadDeMov).OnComplete(VerificarSiHayMasPuntos); //mueve al punto mencionado
         }
@@ -74,6 +81,8 @@ public class EntradasSalidasAds : MonoBehaviour
     } //Aparecer PopUp o Mover Al Siguiente Punto
     public void CerrarPopApAD()
     {
+        Parlante.PlayOneShot(_SonidoClickPopUp);
+        Parlante.PlayOneShot(_SonidoAbrePopUp);
         this.gameObject.transform.DOKill();
         this._TransformCanvas.DOKill();
         _NumPosObjetivos = 0;
