@@ -1,5 +1,84 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &902994094950285464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4441416993377481881}
+  - component: {fileID: 90920410095656529}
+  - component: {fileID: 4592082721963602101}
+  m_Layer: 5
+  m_Name: Text (Legacy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4441416993377481881
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902994094950285464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6334612452148270664}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 261.7, y: -399.7}
+  m_SizeDelta: {x: 302.139, y: 109.845}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &90920410095656529
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902994094950285464}
+  m_CullTransparentMesh: 1
+--- !u!114 &4592082721963602101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902994094950285464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 93219577dff76684c964a8be4603ce71, type: 3}
+    m_FontSize: 59
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 97
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 0/3
 --- !u!1 &1561471688595550454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,6 +1811,7 @@ RectTransform:
   - {fileID: 2610682940506636795}
   - {fileID: 8854487963048306828}
   - {fileID: 1632450806937574266}
+  - {fileID: 4441416993377481881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1829,7 +1909,7 @@ MonoBehaviour:
     normales o monstruales, con una promoci\xF3n del 10 porciento."
   - "Le escribimos para comunicarle la terrible noticia de que su casa fue arrasada,
     destruida y aniquilada por completo, lamentamos su p\xE9rdida :)."
-  - "Recuerden nuestro hermoso lema Miviviendalegre, cuidamos la casa que aprecia,
+  - "Recuerden nuestro hermoso lema Mi vivienda alegre, cuidamos la casa que aprecia,
     a un c\xF3modo precio."
   - "Les informamos que su casa ya no est\xE1 en el mapa por los incidentes ocurridos
     el pasado lunes."
@@ -1842,7 +1922,7 @@ MonoBehaviour:
   - Empleados queremos agradecerles que se queden a trabajar 48 horas diarias, gracias
     por ponerse la camiseta.
   - "Queridos clientes fieles, por estar siempre con nosotros, les vamos a dar un
-    descuento\_del\_0.1%."
+    descuento\_del\_0.1 porciento."
   - "Nos apena informarle que su p\xF3liza no cubre da\xF1os ocasionados por meteoritos
     ni invasiones extraterrestres, pero agradecemos su confianza en Seguros Miviviendalegre."
   - "Le invitamos cordialmente a visitar nuestra feria anual de seguros, donde podr\xE1
@@ -1911,6 +1991,8 @@ MonoBehaviour:
     nos tengamos que trabajar en equipo para encontrar el \xFAltimo donut de la oficina."
   _errors: {fileID: 5299388309081185885}
   ManagerScreens: {fileID: 0}
+  CartasFaltantes: {fileID: 4592082721963602101}
+  CantCartasMaximas: 3
 --- !u!1 &9211234346625510829
 GameObject:
   m_ObjectHideFlags: 0

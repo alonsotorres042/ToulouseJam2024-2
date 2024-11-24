@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Game_Manager : MonoBehaviour
 {
@@ -45,6 +46,7 @@ public class Game_Manager : MonoBehaviour
             yield return null;
         }
         EnHorarioDeSalida = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Debug.Log("Timer reached the limit!");
     }
 }

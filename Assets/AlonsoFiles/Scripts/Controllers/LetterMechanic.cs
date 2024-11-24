@@ -24,7 +24,8 @@ public class LetterMechanic : MonoBehaviour
 
     [Header("Cartas para Pasar")]
     public Text CartasFaltantes;
-    public int CantCartas;
+    public int CantCartasMaximas;
+    int _CantCartas;
 
 
     void Start()
@@ -32,18 +33,26 @@ public class LetterMechanic : MonoBehaviour
         _errors.text = "ERRORES:\n";
         RandomizeTargetContent();
         targetText.text = targetLetter.letterContent;
-        CartasFaltantes.text = "0/" + CantCartas;
+        CartasFaltantes.text = "0/" + CantCartasMaximas;
     }
 
     void Update()
     {
         playerInput.interactable = (playerInput.text == targetLetter.letterContent) ? false : true;
+        if(playerInput.interactable)
+        {
 
+            ColorBlock coloress = new ColorBlock();
+            coloress.disabledColor = Color.blue;
+            playerInput.colors =coloress;
+        }
         if (Input.GetKeyDown(KeyCode.Return))
         {
             float currentError = EvaluateErrorPercentage();
             if (currentError == 0)
             {
+                _CantCartas++;
+                CartasFaltantes.text = _CantCartas + "/" + CantCartasMaximas;
                 ManagerScreens.PresionarEnter();
                 playerInput.text = "";
                 RandomizeTargetContent();
@@ -53,7 +62,7 @@ public class LetterMechanic : MonoBehaviour
                 myTween = DOTween.To(() => depresometer.value, x => depresometer.value = x, depresometer.value - correctAnswerDiscount, 1);
 
                 Debug.Log("Success");
-                if (Game_Manager.EnHorarioDeSalida)
+                if (_CantCartas>= CantCartasMaximas)
                 {
                     ManagerScreens.LlamarAtransicion();
                     
