@@ -5,11 +5,24 @@ using UnityEngine.EventSystems;
 
 public class CallMecanic : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    [SerializeField] GameObject _Canvas;
     private RectTransform rectTransform;
     private Canvas canvas;
     private CanvasGroup canvasGroup;
 
     public RectTransform dropZone; // Asigna el contenedor de basura en el Inspector
+
+    Vector3 _startPosition;
+
+    private void Start()
+    {
+        _startPosition = transform.position;
+    }
+
+    private void OnDisable()
+    {
+        transform.position = _startPosition;
+    }
 
     private void Awake()
     {
@@ -40,7 +53,7 @@ public class CallMecanic : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         {
             Debug.Log("¡Soltado sobre la zona de basura!");
             // Opcional: Eliminar el objeto o realizar otra acción
-            Destroy(gameObject);
+            _Canvas.SetActive(false);
         }
         else
         {
