@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using System.Runtime.CompilerServices;
 public class LetterMechanic : MonoBehaviour
 {
     [SerializeField] CambioDePantallas cambioDePantallas;
@@ -23,11 +22,17 @@ public class LetterMechanic : MonoBehaviour
 
     public CambioDePantallas ManagerScreens;
 
+    [Header("Cartas para Pasar")]
+    public Text CartasFaltantes;
+    public int CantCartas;
+
+
     void Start()
     {
         _errors.text = "ERRORES:\n";
         RandomizeTargetContent();
         targetText.text = targetLetter.letterContent;
+        CartasFaltantes.text = "0/" + CantCartas;
     }
 
     void Update()
@@ -39,6 +44,7 @@ public class LetterMechanic : MonoBehaviour
             float currentError = EvaluateErrorPercentage();
             if (currentError == 0)
             {
+                ManagerScreens.PresionarEnter();
                 playerInput.text = "";
                 RandomizeTargetContent();
                 targetText.text = targetLetter.letterContent;
@@ -50,7 +56,9 @@ public class LetterMechanic : MonoBehaviour
                 if (Game_Manager.EnHorarioDeSalida)
                 {
                     ManagerScreens.LlamarAtransicion();
+                    
                     Game_Manager.EnHorarioDeSalida = false;
+
                 }
             }
             else
@@ -60,11 +68,15 @@ public class LetterMechanic : MonoBehaviour
                 myTween = DOTween.To(() => depresometer.value, x => depresometer.value = x, depresometer.value + currentError, 1).SetEase(Ease.Linear);
                 if (depresometer.value+currentError >= depresometer.maxValue)
                 {
-                    //cambioDePantallas.EvaluateWin(false);
+                    cambioDePantallas.EvaluateWin(false);
                 }
                 Debug.Log("Wrong answer, check for mistakes");
             }
         }
+    }
+    private void FixedUpdate()
+    {
+        depresometer.value += Time.deltaTime / 10;
     }
     public void RandomizeTargetContent()
     {
@@ -168,4 +180,5 @@ public class LetterMechanic : MonoBehaviour
             }
         
     }
+
 }

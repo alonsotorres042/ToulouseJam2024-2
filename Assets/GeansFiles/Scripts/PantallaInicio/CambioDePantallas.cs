@@ -24,6 +24,7 @@ public class CambioDePantallas : MonoBehaviour
     AudioSource _Parlante;
     public AudioClip _CambioDeDia;
     public AudioClip _EmpiezaElDia;
+    public AudioClip Enter;
     private void Start()
     {
         _Parlante = GetComponent<AudioSource>();
@@ -68,6 +69,10 @@ public class CambioDePantallas : MonoBehaviour
             _TitulosDias[day-1].gameObject.SetActive(false);
             VentanaDeTransicion.gameObject.SetActive(false);
         }
+    }
+    public void PresionarEnter()
+    {
+        _Parlante.PlayOneShot(Enter);
     }
     IEnumerator TituloDelDia()
     {
