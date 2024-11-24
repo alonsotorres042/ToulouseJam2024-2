@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -72,7 +73,16 @@ public class CambioDePantallas : MonoBehaviour
     {
         yield return new WaitForSeconds (TiempoMostrarTitulo);
         PasaraDia();
-
     }
-    
+    public void EvaluateWin(bool mybool)
+    {
+        if (mybool)
+        {
+            _PantallaGanaste.SetActive(true);
+        }
+        else
+        {
+            _PantallaPerdiste.SetActive(true);
+        }
+    }
 }

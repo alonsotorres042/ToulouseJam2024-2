@@ -29,7 +29,7 @@ public class Game_Manager : MonoBehaviour
 
     public IEnumerator MyTimer(float limitTime, float timeToReachLimit)
     {
-        float currentValue = 780;
+        float currentValue = 360;
         float incrementPerSecond = limitTime / timeToReachLimit; // Incremento por segundo
 
         while (currentValue < limitTime)

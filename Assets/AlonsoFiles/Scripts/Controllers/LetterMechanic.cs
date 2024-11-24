@@ -4,15 +4,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Runtime.CompilerServices;
 public class LetterMechanic : MonoBehaviour
 {
+    [SerializeField] CambioDePantallas cambioDePantallas;
     [SerializeField] TMP_InputField playerInput;
     [SerializeField] TMP_Text targetText;
     [SerializeField] TMP_Text helpingText;
     [SerializeField] Slider depresometer;
     [SerializeField] float correctAnswerDiscount;
     [SerializeField] string[] contentOptions;
-
 
     //SHOW ERRORS TEXT
     [SerializeField] TextMeshProUGUI _errors;
@@ -43,7 +44,8 @@ public class LetterMechanic : MonoBehaviour
                 targetText.text = targetLetter.letterContent;
 
                 myTween.Kill();
-                myTween = DOTween.To(() => depresometer.value, x => depresometer.value = x, depresometer.value - correctAnswerDiscount, 1).SetEase(Ease.Linear);
+                myTween = DOTween.To(() => depresometer.value, x => depresometer.value = x, depresometer.value - correctAnswerDiscount, 1);
+
                 Debug.Log("Success");
                 if (Game_Manager.EnHorarioDeSalida)
                 {
@@ -56,6 +58,10 @@ public class LetterMechanic : MonoBehaviour
                 ShowErrors();
                 myTween.Kill();
                 myTween = DOTween.To(() => depresometer.value, x => depresometer.value = x, depresometer.value + currentError, 1).SetEase(Ease.Linear);
+                if (depresometer.value+currentError >= depresometer.maxValue)
+                {
+                    //cambioDePantallas.EvaluateWin(false);
+                }
                 Debug.Log("Wrong answer, check for mistakes");
             }
         }
@@ -141,7 +147,6 @@ public class LetterMechanic : MonoBehaviour
         }
         return input;
     }
-
     void ShowErrors()
     {
         string currentInput = playerInput.text;
